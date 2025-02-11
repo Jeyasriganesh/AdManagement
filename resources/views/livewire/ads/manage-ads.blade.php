@@ -22,12 +22,27 @@
         </div>
     @endif
 
-    <!-- If Ads List is Empty -->
-    @if ($ads->isEmpty())
-        <div class="border p-4 rounded-lg shadow-md mb-4 bg-white text-center">
-            <h1 class="text-lg font-semibold text-gray-700">No Records Found</h1>
-        </div>
-    @else
+    <div class="flex space-x-4 mb-4">
+        <input type="text" wire:model.live="search" 
+               placeholder="Search by keyword..." 
+               class="border p-2 rounded w-1/3">
+
+        <select wire:model.live="category" class="border p-2 rounded w-1/3">
+            <option value="">All Categories</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Furniture">Furniture</option>
+            <option value="Vehicles">Vehicles</option>
+            <option value="Real Estate">Real Estate</option>
+        </select>
+
+        <input type="number" wire:model.live="minPrice" placeholder="Min Price" 
+               class="border p-2 rounded w-1/6">
+
+        <input type="number" wire:model.live="maxPrice" placeholder="Max Price" 
+               class="border p-2 rounded w-1/6">
+    </div>
+
+    @if ($ads->count() > 0)
         @foreach ($ads as $ad)
             <div class="flex items-center border p-4 rounded-lg shadow-md mb-4 bg-white">
                 <!-- Left Side: Ad Details -->
@@ -62,5 +77,12 @@
                 </div>
             </div>
         @endforeach
+        <div class="mt-4">
+            {{ $ads->links() }}
+        </div>
+        @else
+        <div class="border p-4 rounded-lg shadow-md bg-white">
+            <p class="text-gray-500">No ads found.</p>
+        </div>
     @endif
 </div>
