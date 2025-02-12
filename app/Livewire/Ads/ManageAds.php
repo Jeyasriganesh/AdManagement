@@ -40,7 +40,7 @@ class ManageAds extends Component
     {
         return redirect()->route('ads.create', ['id' => $adId]);
     }
-    
+
     public function refreshAds()
     {
         $this->resetPage(); // Reset pagination
@@ -49,8 +49,6 @@ class ManageAds extends Component
     {
         $this->resetPage();
     }
-
-
 
     public function updatingCategory()
     {
@@ -90,9 +88,10 @@ class ManageAds extends Component
             $query->where('price', '<=', $this->maxPrice);
         }
 
+        //dump($query->paginate(10));
+
         return view('livewire.ads.manage-ads', [
-            'ads' => $query->paginate(5)
+            'ads' => $query->paginate(10)
         ]);
     }
 }
-

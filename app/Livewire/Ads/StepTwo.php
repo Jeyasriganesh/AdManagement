@@ -17,13 +17,13 @@ class StepTwo extends Component
     public $id;
     // #[Validate('nullable|image|max:1024')]
     public $image;
-    public $existingImage; 
+    public $existingImage;
 
     protected function rules()
     {
         return [
-         
-            'image' => 'nullable|image|max:1024', // Max 1MB
+
+            'image' => 'required|image|max:1024', // Max 1MB
         ];
     }
 
@@ -68,13 +68,13 @@ class StepTwo extends Component
     {
 
         if ($id) {
-            
+
             $ad = Ad::find($id);
 
            // dd($ad->image);
             if ($ad) {
-           
-                // $this->image = null;
+
+                $this->image = $ad->image;
                 $this->existingImage = $ad->image;
             }
         }
