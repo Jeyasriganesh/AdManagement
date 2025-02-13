@@ -12,9 +12,6 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-
-
-
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Toggle;
@@ -60,11 +57,11 @@ class UserResource extends Resource
                             ->label('Active Status')
                             ->default(true),
 
-                        // SpatieMediaLibraryFileUpload::make('profile_picture')
-                        //     ->collection('profile_pictures')
-                        //     ->label('Profile Picture')
-                        //     ->image()
-                        //     ->imagePreviewHeight('150'),
+                        SpatieMediaLibraryFileUpload::make('profile_picture')
+                            ->collection('profile_pictures')
+                            ->label('Profile Picture')
+                            ->image()
+                            ->imagePreviewHeight('150'),
                     ]),
             ]);
     }
